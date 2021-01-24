@@ -4,7 +4,22 @@
 <h1 class="title">
   Welcome to the Blog!
 </h1>
-<h2 class="subtitle">
-  Easy authentication and authorization in Flask.
-</h2>
+{% for posts in data %}
+<p>{{ posts.post }}</p>
+<p>By - {{ posts.name.name }}</p>
+{% endfor %}
+{% if current_user.is_authenticated %}
+<div class="container">
+  <form method="post" action="/">
+    <div class="field">
+      <div class="control">
+          <input class="input is-large" type="text" name="post"/>
+      </div>
+  </div>
+    
+    <button class="button is-block is-info is-large is-fullwidth" name="submit"></button>
+  </form>
+
+</div>
+{% endif %}
 {% endblock %}
