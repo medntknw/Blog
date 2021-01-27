@@ -1,25 +1,32 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title">
-  Welcome to the Blog!
-</h1>
-{% for posts in data %}
-<p>{{ posts.post }}</p>
-<p>By - {{ posts.name.name }}</p>
-{% endfor %}
-{% if current_user.is_authenticated %}
-<div class="container">
-  <form method="post" action="/">
-    <div class="field">
-      <div class="control">
-          <input class="input is-large" type="text" name="post"/>
-      </div>
+<div class = "container">
+  <h1> Welcome to the Blog! </h1>
+  <div class=" container jumbotron">
+    <ul class="list-group">
+      {% for posts in data %}
+      <li class="list-group-item">
+        {{ posts.post }}
+        <br>
+        <b>By - {{ posts.name.name }} </b>
+      </li>
+      {% endfor %}
+    </ul>
   </div>
-    
-    <button class="button is-block is-info is-large is-fullwidth" name="submit"></button>
-  </form>
-
+  {% if current_user.is_authenticated %}
+  <div class="container">
+    <form method="post" action="/">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">With textarea</span>
+        </div>
+        <textarea name="post" class="form-control" aria-label="Tell me"></textarea>
+    </div>
+    <br>
+    <button class="btn btn-primary" name="submit">Submit</button>
+    </form>
+  </div>
 </div>
 {% endif %}
 {% endblock %}

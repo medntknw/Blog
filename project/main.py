@@ -9,7 +9,7 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    posts = Blogs.query.limit(10).all()
+    posts = Blogs.query.order_by(Blogs.id.desc()).limit(3).all()
     return render_template('index.html', data=posts)
 
 @login_required
